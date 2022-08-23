@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import "./App.css";
+import React, { useEffect } from "react";
+import KillingKittens from "./components/KillingKittens";
+import { useDispatch } from "react-redux";
+import { setScrollPosition } from "./redux/scrollPositionSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    dispatch(setScrollPosition({ current: position }));
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ height: "200vh" }} className="App">
+      <KillingKittens />
     </div>
   );
 }

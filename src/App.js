@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import KillingKittens from "./components/kk/KillingKittens";
 import { useDispatch } from "react-redux";
 import { setScrollPosition } from "./redux/scrollPositionSlice";
+import NewContentForm from "./components/contentAdmin/NewContentForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +30,8 @@ function App() {
       }}
       className="App"
     >
-      <KillingKittens />
+      <NewContentForm />
+      {/* <KillingKittens /> */}
     </div>
   );
 }

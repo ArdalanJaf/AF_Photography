@@ -21,8 +21,9 @@ const StyledText = styled.div`
     color: white;
     display: block;
     position: absolute;
-    top: 0;
-    height: 40%;
+    bottom: 0;
+    /* height: 40%; */
+    height: 57.8%;
     width: 90%;
     margin: auto;
     /* padding: 5%; */
@@ -62,7 +63,7 @@ function Text({
           <span key={index}>{textOrHTML}</span>
         ))}
       </p> */}
-      {text}
+      <div style={{ height: "57.8%" }}>{text}</div>
     </StyledText>
   );
 }

@@ -39,6 +39,14 @@ function NewContentForm() {
       <label>
         Title: <input value={title} onInput={(e) => updateTitle(e)} />
       </label>
+
+      <label>
+        <input type="radio" name="content type" /> Slideshow
+      </label>
+      <label>
+        <input type="radio" name="content type" /> Carasol
+      </label>
+
       <ul>
         {imageLinks.map((iL, index) => (
           <li key={index}>

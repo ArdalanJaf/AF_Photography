@@ -2,22 +2,19 @@ import styled from "styled-components";
 
 const StyledText = styled.div`
   position: absolute;
+  overflow: hidden;
 
   div {
-    padding: 5%;
-    /* display: flex;
-    flex-direction: column; */
-    /* justify-content: center; */
-    /* align-items: stretch; */
+    /* padding: 5%; */
+    display: flex;
+    flex-direction: column;
   }
 
   p {
-    /* padding: 5%; */
+    padding: 5%;
     line-height: 135%;
     /* background-color: rgbs(0, 0, 0, 0.5); */
     font-family: "roboto mono";
-    /* padding: 1% 1%; */
-    /* background-color: #ff000085; */
     color: white;
     border-radius: 5px;
     margin-block-start: 0;
@@ -35,6 +32,8 @@ function Text({
   heightReveal,
   maxHeight,
   gap,
+  paddingTop,
+  textAlign,
 }) {
   return (
     <StyledText
@@ -49,7 +48,16 @@ function Text({
         backgroundColor: `${color}`,
       }}
     >
-      <div style={{ gap: `${gap}%`, height: `${maxHeight}%` }}>{text}</div>
+      <div
+        style={{
+          gap: `${gap}%`,
+          height: `${maxHeight}%`,
+          paddingTop: `${paddingTop}%`,
+          textAlign: textAlign,
+        }}
+      >
+        {text}
+      </div>
     </StyledText>
   );
 }

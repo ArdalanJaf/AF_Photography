@@ -1,50 +1,50 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import StyledNewContentForm from "./NewContentForm.style";
+import {
+  setTitle,
+  setImageLink,
+  delImageLink,
+  addImageLink,
+  upImageLink,
+  downImageLink,
+  setSlideShow,
+  setTimeStamp,
+} from "../../redux/dynamicContentSlice";
 
 function NewContentForm() {
-  const [content, setContent] = useState({ title: "", imageLinks: [""] });
-  const { title, imageLinks } = content;
-
-  const updateTitle = (e) =>
-    setContent({ ...content, title: `${e.target.value}` });
-
-  const updateIL = (e, index) => {
-    const updatedIL = [...imageLinks];
-    updatedIL[index] = e.target.value;
-    setContent({ ...content, imageLinks: updatedIL });
-  };
-
-  const deleteIL = (index) => {
-    const updatedIL = [...imageLinks];
-    updatedIL.splice(index, 1);
-    setContent({ ...content, imageLinks: updatedIL });
-  };
-
-  const moveUpIL = (index) => {
-    const updatedIL = [...imageLinks];
-    const iL = updatedIL.splice(index, 1)[0];
-    updatedIL.splice(index - 1, 0, iL);
-    setContent({ ...content, imageLinks: updatedIL });
-  };
-
-  const moveDownIL = (index) => {
-    const updatedIL = [...imageLinks];
-    const iL = updatedIL.splice(index, 1)[0];
-    updatedIL.splice(index + 1, 0, iL);
-    setContent({ ...content, imageLinks: updatedIL });
-  };
+  const dispatch = useDispatch();
+  const activeContent = useSelector((state) => state.dynamicContent.active);
+  const { title, imageLinks } = activeContent;
 
   return (
     <StyledNewContentForm>
       <label>
-        Title: <input value={title} onInput={(e) => updateTitle(e)} />
+        Title:{" "}
+        <input
+          value={title}
+          onInput={(e) => dispatch(setTitle(e.target.value))}
+        />
       </label>
 
       <label>
-        <input type="radio" name="content type" /> Slideshow
+        <input
+          type="radio"
+          name="format"
+          value={true}
+          defaultChecked
+          onInput={() => dispatch(setSlideShow(true))}
+        />{" "}
+        Slideshow
       </label>
       <label>
-        <input type="radio" name="content type" /> Carasol
+        <input
+          type="radio"
+          name="format"
+          value={false}
+          onInput={() => dispatch(setSlideShow(false))}
+        />{" "}
+        Carasol
       </label>
 
       <ul>
@@ -53,18 +53,22 @@ function NewContentForm() {
             <label>
               Image link:
               <input
-                value={imageLinks[index]}
-                onInput={(e) => updateIL(e, index)}
+                value={iL}
+                onInput={(e) =>
+                  dispatch(setImageLink({ index, value: e.target.value }))
+                }
               />
-              <button onClick={() => deleteIL(index)}>delete</button>
+              <button onClick={() => dispatch(delImageLink(index))}>
+                delete
+              </button>
               <button
-                onClick={() => moveUpIL(index)}
+                onClick={() => dispatch(upImageLink(index))}
                 disabled={index > 0 ? false : true}
               >
                 UP
               </button>
               <button
-                onClick={() => moveDownIL(index)}
+                onClick={() => dispatch(downImageLink(index))}
                 disabled={index < imageLinks.length - 1 ? false : true}
               >
                 DOWN
@@ -76,16 +80,24 @@ function NewContentForm() {
 
       <button
         onClick={() =>
-          setContent({ ...content, imageLinks: [...content.imageLinks, ""] })
+          // setContent({ ...content, imageLinks: [...content.imageLinks, ""] })
+          dispatch(addImageLink())
         }
       >
         Add Image Link
       </button>
 
-      <button onClick={() => console.log("SEND DATA", content)}>SUBMIT</button>
+      <button
+        onClick={() => {
+          dispatch(setTimeStamp());
+          console.log("SEND DATA", activeContent);
+        }}
+      >
+        SUBMIT
+      </button>
 
-      <p>{content.title}</p>
-      {content.imageLinks.map((iL, i) => (
+      <p>{title}</p>
+      {imageLinks.map((iL, i) => (
         <p key={i}>{iL}</p>
       ))}
     </StyledNewContentForm>

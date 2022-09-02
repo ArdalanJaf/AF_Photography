@@ -2,10 +2,11 @@
 // import "./App.css";
 // import React, { useEffect } from "react";
 import React from "react";
+import ExistingContent from "./components/contentAdmin/ExistingContent";
 import KillingKittens from "./components/kk/KillingKittens";
 // import { useDispatch } from "react-redux";
 // import { setScrollPosition } from "./redux/scrollPositionSlice";
-// import NewContentForm from "./components/contentAdmin/NewContentForm";
+import NewContentForm from "./components/contentAdmin/NewContentForm";
 
 function App() {
   // const dispatch = useDispatch();
@@ -31,8 +32,9 @@ function App() {
       }}
       className="App"
     >
-      {/* <NewContentForm /> */}
-      <KillingKittens />
+      <NewContentForm />
+      <ExistingContent />
+      {/* <KillingKittens /> */}
     </div>
   );
 }

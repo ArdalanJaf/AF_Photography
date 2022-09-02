@@ -26,7 +26,7 @@ import office from "../../images/kk/wAndrea Fernandes_Killing Kittens_2.jpg";
 
 function KillingKittens() {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [fontSize, setFontSize] = useState("10px");
+  const [fontSize, setFontSize] = useState("");
 
   const handleScroll = () => {
     let fromTop = document.getElementById("kkScroller").scrollTop; // height scrolled from top of container
@@ -39,15 +39,15 @@ function KillingKittens() {
     return scrollPosition > startReveal - 1 ? scrollPosition - startReveal : 0;
   }
 
-  function getDynamicFontSize() {
+  function setDynamicFontSize() {
     let maxWidth = document.getElementById("kkScroller").offsetWidth;
     setFontSize(maxWidth / 50);
   }
 
   useEffect(() => {
-    getDynamicFontSize();
-    window.addEventListener("resize", getDynamicFontSize);
-    return () => window.removeEventListener("resize", getDynamicFontSize);
+    setDynamicFontSize();
+    window.addEventListener("resize", setDynamicFontSize);
+    return () => window.removeEventListener("resize", setDynamicFontSize);
   }, []);
 
   return (

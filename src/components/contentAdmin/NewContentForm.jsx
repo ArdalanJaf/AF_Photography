@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import StyledNewContentForm from "./NewContentForm.style";
 import {
@@ -10,12 +10,13 @@ import {
   downImageLink,
   setSlideShow,
   setTimeStamp,
-} from "../../redux/dynamicContentSlice";
+  cleanImageLinks,
+} from "../../redux/contentSlice";
 
 function NewContentForm() {
   const dispatch = useDispatch();
-  const activeContent = useSelector((state) => state.dynamicContent.active);
-  const { title, imageLinks } = activeContent;
+  const active = useSelector((state) => state.content.active);
+  const { title, imageLinks } = active;
 
   return (
     <StyledNewContentForm>
@@ -78,19 +79,15 @@ function NewContentForm() {
         ))}
       </ul>
 
-      <button
-        onClick={() =>
-          // setContent({ ...content, imageLinks: [...content.imageLinks, ""] })
-          dispatch(addImageLink())
-        }
-      >
-        Add Image Link
-      </button>
+      <button onClick={() => dispatch(addImageLink())}>Add Image Link</button>
 
       <button
         onClick={() => {
+          dispatch(cleanImageLinks());
           dispatch(setTimeStamp());
-          console.log("SEND DATA", activeContent);
+          // send to backEnd to be stored in database.
+          // exisiting content: ask back to retrieve from database
+          console.log("SEND DATA", active); // add to index 0 of existing content
         }}
       >
         SUBMIT

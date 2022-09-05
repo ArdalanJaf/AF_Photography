@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import scrollPositionReducer from "./scrollPositionSlice";
-import dynamicContentReducer from "./dynamicContentSlice";
+import contentReducer from "./contentSlice";
 
 export const store = configureStore({
   reducer: {
     scrollPosition: scrollPositionReducer,
-    dynamicContent: dynamicContentReducer,
+    content: contentReducer,
   },
 });

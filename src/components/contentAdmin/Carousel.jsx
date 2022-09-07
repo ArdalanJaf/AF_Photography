@@ -3,7 +3,6 @@ import StyledCarousel from "./Carousel.style";
 
 //slide show
 function Carousel({ content }) {
-  console.log(content.imageLinks);
   return (
     <StyledCarousel>
       <h2>{content.title}</h2>

@@ -24,6 +24,8 @@ function Slideshow({ content }) {
         <button
           className={`prevImg ${iLIndex > 0 ? "" : "hideCursor"}`}
           onClick={() => setILIndex(iLIndex - 1)}
+          // className="prevImg"
+          // onClick={() => setILIndex(iLIndex - 1)}
           disabled={iLIndex > 0 ? false : true}
         >
           prev

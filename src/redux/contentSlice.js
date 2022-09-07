@@ -1,40 +1,50 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getUniqueId } from "../utils";
 
 export const contentSlice = createSlice({
   name: "content",
   initialState: {
     active: {
+      id: "",
       title: "",
       imageLinks: [""],
-      slideShow: true, // false = carousel
-      entryTimeStamp: null,
-      updateTimeStamp: null,
+      format: 0, // 0 = slideshow 1 = carousel
+      sortOrder: 0,
       // hide: false,
+      entryTimestamp: 0,
+      updateTimestamp: 0,
+    },
+    activeUtil: {
+      readyToPublish: false,
+      existingContent: false,
     },
     library: [
       {
-        title: "Title Goes Here",
+        title: "Title Goes Here1",
         imageLinks: [
           "https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg",
           "https://techcrunch.com/wp-content/uploads/2022/06/Weird-Stock-Photography-Haje-Kamps-websize.jpeg",
           "https://static.boredpanda.com/blog/wp-content/uploads/2021/03/funny-weird-wtf-stock-photos-28-5a3a5b135f099__700-603e8e17800ae__700.jpg",
         ],
-        slideShow: true, // false = carousel
-        entryTimeStamp: null,
-        updateTimeStamp: null,
-        // hide: false,
+        format: 0,
+        entryTimestamp: 1662487587289,
+        updateTimestamp: 0,
+        hide: false,
+        id: "blalvblalasf",
+        sortOrder: 0,
       },
       {
-        title: "Title Goes Here",
+        title: "Title Goes Here2",
         imageLinks: [
-          "https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg",
           "https://techcrunch.com/wp-content/uploads/2022/06/Weird-Stock-Photography-Haje-Kamps-websize.jpeg",
           "https://static.boredpanda.com/blog/wp-content/uploads/2021/03/funny-weird-wtf-stock-photos-28-5a3a5b135f099__700-603e8e17800ae__700.jpg",
+          "https://iso.500px.com/wp-content/uploads/2015/03/business_cover.jpeg",
         ],
-        slideShow: false, // false = carousel
-        entryTimeStamp: null,
-        updateTimeStamp: null,
-        // hide: false,
+        format: 1,
+        entryTimestamp: 1662187230491,
+        updateTimestamp: 0,
+        id: "q1qhqrhqwrhiq",
+        hide: false,
       },
     ],
   },
@@ -59,22 +69,64 @@ export const contentSlice = createSlice({
       let iL = state.active.imageLinks.splice(action.payload, 1)[0];
       state.active.imageLinks.splice(action.payload + 1, 0, iL);
     },
-    setSlideShow: (state, action) => {
-      state.active.slideShow = action.payload;
+    setFormat: (state, action) => {
+      state.active.format = action.payload;
     },
-    setTimeStamp: (state) => {
+    // setHide: (state, action) => {
+    //   state.active.hide = action.payload;
+    // },
+    prepForSave: (state) => {
+      // apply entry/update time stamp
       let now = Date.now();
-      console.log(now);
-      console.log(state.active.entryTimeStamp === null ? true : false);
-      if (state.active.entryTimeStamp === null) {
-        state.active.entryTimeStamp = now;
+      if (!state.active.entryTimestamp) {
+        state.active.entryTimestamp = now;
       } else {
-        state.active.updateTimeStamp = now;
+        state.active.updateTimestamp = now;
       }
-    },
-    cleanImageLinks: (state) => {
+      // clear empty image links
       state.active.imageLinks = state.active.imageLinks.filter(
         (iL) => iL.length > 0
+      );
+      // add ID if new content
+      if (!state.active.id) state.active.id = getUniqueId();
+      // initiate save to local db and db
+      state.activeUtil.readyToPublish = true;
+    },
+    resetReadyToPublish: (state) => {
+      state.activeUtil.readyToPublish = false;
+    },
+    setActive: (state, action) => {
+      state.active = state.library[action.payload];
+      state.activeUtil.existingContent = true;
+    },
+    resetActive: (state) => {
+      state.active = {
+        id: "",
+        title: "",
+        imageLinks: [""],
+        format: 0, // 0 = slideshow 1 = carousel
+        sortOrder: 0,
+        // hide: false,
+        entryTimestamp: 0,
+        updateTimestamp: 0,
+      };
+      state.activeUtil.existingContent = false;
+    },
+    saveToLibrary: (state, action) => {
+      // if new content, add to begining of library, else update content in library
+      if (state.activeUtil.existingContent) {
+        state.library[
+          state.library.findIndex((content) => content.id === action.payload.id)
+        ] = action.payload;
+      } else {
+        state.library.unshift(action.payload);
+        state.activeUtil.existingContent = true;
+      }
+    },
+    delContent: (state, action) => {
+      state.library.splice(
+        state.library.findIndex((content) => content.id === action.payload.id),
+        1
       );
     },
   },
@@ -87,9 +139,14 @@ export const {
   addImageLink,
   upImageLink,
   downImageLink,
-  setSlideShow,
-  setTimeStamp,
-  cleanImageLinks,
+  setFormat,
+  setHide,
+  prepForSave,
+  resetReadyToPublish,
+  setActive,
+  resetActive,
+  saveToLibrary,
+  delContent,
 } = contentSlice.actions;
 
 export default contentSlice.reducer;

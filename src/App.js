@@ -2,13 +2,13 @@
 // import "./App.css";
 // import React, { useEffect } from "react";
 import React from "react";
-import ExistingContent from "./components/contentAdmin/ExistingContent";
+import ContentAdmin from "./components/contentAdmin/ContentAdmin";
 import KillingKittens from "./components/kk/KillingKittens";
 import { useDispatch, useSelector } from "react-redux";
 // import { setScrollPosition } from "./redux/scrollPositionSlice";
-import NewContentForm from "./components/contentAdmin/NewContentForm";
 import Slideshow from "./components/contentAdmin/Slideshow";
 import Carousel from "./components/contentAdmin/Carousel";
+import Home from "./components/Home";
 
 function App() {
   // const dispatch = useDispatch();
@@ -35,18 +35,20 @@ function App() {
       }}
       className="App"
     >
-      {/* <NewContentForm /> */}
-      {/* 
-      {library.map((content, index) =>
-        content.slideShow ? (
-          <Slideshow key={index} content={content} />
-        ) : (
-          <Carousel key={index} content={content} />
-        )
-      )} */}
+      <ContentAdmin />
+      {/* {library.map((content, index) => {
+        if (!content.hide) {
+          return content.slideShow ? (
+            <Slideshow key={index} content={content} />
+          ) : (
+            <Carousel key={index} content={content} />
+          );
+        }
+      })} */}
 
-      {/* <ExistingContent /> */}
-      <KillingKittens />
+      {/* <KillingKittens /> */}
+
+      {/* <Home /> */}
     </div>
   );
 }

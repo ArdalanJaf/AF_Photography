@@ -4,7 +4,7 @@ import arrowRight from "../icons/arrowRight.svg";
 
 const StyledCarousel = styled.div`
   border: 1px blue dashed; //
-  width: 100%;
+  max-width: 100vw;
 
   h2 {
     text-align: center;

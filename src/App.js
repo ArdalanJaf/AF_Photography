@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Slideshow from "./components/contentAdmin/Slideshow";
 import Carousel from "./components/contentAdmin/Carousel";
 import Home from "./components/Home";
+import getContent from "./API/getContent";
 
 function App() {
   // const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
       }}
       className="App"
     >
+      <button onClick={() => getContent()}>API</button>
       <ContentAdmin />
       {/* {library.map((content, index) => {
         if (!content.hide) {

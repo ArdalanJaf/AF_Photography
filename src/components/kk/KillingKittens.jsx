@@ -6,7 +6,7 @@ import ScrollImage from "./ScrollImage";
 import StaticImage from "./StaticImage";
 import Spacer from "./Spacer";
 import Text from "./Text";
-// images
+// images <to be replaced by URLS>
 import upskirt from "../../images/kk/wAndrea Fernandes_Killing_Kittens_8.jpg";
 import tree from "../../images/kk/wAndrea Fernandes_Killing Kittens_4.jpg";
 import lips from "../../images/kk/wAndrea Fernandes_Killing Kittens_16.jpg";

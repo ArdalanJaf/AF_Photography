@@ -1,24 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Intro from "./components/Intro";
 import ContentAdmin from "./components/contentAdmin/ContentAdmin";
 import KillingKittens from "./components/kk/KillingKittens";
 import { useDispatch, useSelector } from "react-redux";
-// import { setScrollPosition } from "./redux/scrollPositionSlice";
+import { setScrollPosition } from "./redux/scrollPositionSlice";
 import { getUniqueId } from "./utils";
+import KKSlide from "./components/KK";
+
 function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const handleScroll = () => {
-  //   const position = window.pageYOffset;
-  //   dispatch(setScrollPosition({ current: position }));
-  // };
+  // track scroll position
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-  // }, []);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    dispatch(setScrollPosition({ current: position }));
+    // console.log(position);
+  };
+
   const library = useSelector((state) => state.content.library);
 
-  let testEntry = {
+  let apiTestEntry = {
     id: getUniqueId(),
     title: "Andy's first entry",
     imageLinks: ["AFE1", "AFE2", "AFE3"],
@@ -31,11 +37,12 @@ function App() {
 
   return (
     <div className="App">
-      <Intro bgColor={"#ee9b00"} />
-      {/* <button onClick={() => getContent(testEntry)}>API</button> */}
+      {/* <button onClick={() => getContent(apiTestEntry)}>API</button> */}
       {/* <ContentAdmin /> */}
-
       {/* <KillingKittens /> */}
+      <Intro bgColor={"#ee9b00"} />
+      <KKSlide bgColor={"#0A9396"} />
+      <Intro bgColor={"#ee9b00"} />
     </div>
   );
 }

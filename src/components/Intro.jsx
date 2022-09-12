@@ -2,20 +2,20 @@ import React from "react";
 import styled from "styled-components";
 import StyledSlide from "./styles/Slide.style";
 
+const StyledH1 = styled.h1`
+  font-size: 15vw;
+`;
+
 function Intro({ bgColor }) {
   return (
     <StyledSlide style={{ backgroundColor: bgColor }}>
       {" "}
-      <styledH1>
+      <StyledH1>
         ANDREA <br />
         FERNANDES
-      </styledH1>
+      </StyledH1>
     </StyledSlide>
   );
 }
 
 export default Intro;
-
-const styledH1 = styled.h1`
-  font-size: 80%;
-`;

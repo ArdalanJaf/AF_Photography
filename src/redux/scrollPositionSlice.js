@@ -5,24 +5,22 @@ export const scrollPositionSlice = createSlice({
   initialState: {
     current: 0,
     prev: 0,
-    prevPerc: 0,
-    currentPerc: 0,
+    prevPercent: 0,
+    currentPercent: 0,
   },
   reducers: {
     setScrollPosition: (state, action) => {
       let scrollPosition = { ...state };
-      //   console.log(scrollPosition);
+      let maxHeight = document.body.clientHeight;
 
+      // console.log(scrollPosition.current);
       if (scrollPosition.current !== action.payload.current) {
         scrollPosition.prev = scrollPosition.current;
+        scrollPosition.prevPercent = (scrollPosition.current / maxHeight) * 100;
       }
       scrollPosition.current = action.payload.current;
-
-      let maxHeight = document.body.clientHeight;
-      //   let maxHeight = window.innerHeight;
-      //   console.log(maxHeight);
-      scrollPosition.currentPerc = (scrollPosition.current / maxHeight) * 100;
-      console.log(scrollPosition.currentPerc);
+      scrollPosition.currentPercent =
+        (scrollPosition.current / maxHeight) * 100;
 
       return scrollPosition;
     },

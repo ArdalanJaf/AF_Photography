@@ -28,6 +28,7 @@ function KillingKittens() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [fontSize, setFontSize] = useState("");
 
+  //
   const handleScroll = () => {
     let fromTop = document.getElementById("kkScroller").scrollTop; // height scrolled from top of container
     let maxHeight = document.getElementById("kkScroller").offsetHeight; // total height of container
@@ -35,15 +36,18 @@ function KillingKittens() {
     setScrollPosition(percentage);
   };
 
+  //
   function imgReveal(startReveal) {
     return scrollPosition > startReveal - 1 ? scrollPosition - startReveal : 0;
   }
 
+  // scale font size relative to VW
   function setDynamicFontSize() {
     let maxWidth = document.getElementById("kkScroller").offsetWidth;
     setFontSize(maxWidth / 50);
   }
 
+  // apply event listener to VW
   useEffect(() => {
     setDynamicFontSize();
     window.addEventListener("resize", setDynamicFontSize);
@@ -494,278 +498,3 @@ function KillingKittens() {
 }
 
 export default KillingKittens;
-
-{
-  /* 
-          <Text
-            top={345}
-            left={67}
-            color="#9716196b"
-            text={
-              <p>
-                My mum says <br />
-                I've got to be <br />a good girl.
-              </p>
-            }
-          />
-
-          <Text
-            top={380}
-            left={32.6}
-            color="#9716196b"
-            text={
-              <p>
-                
-              </p>
-            }
-          /> */
-}
-{
-  /* <Text
-            top={380}
-            left={32.6}
-            color="#9716196b"
-            text={
-              <p>
-                Every now and then
-                <br />
-                I burn myself
-                <br /> so I can feel <br /> like a bad girl.
-              </p>
-            }
-          /> */
-}
-{
-  /* <Text
-            top={475}
-            left={55}
-            color="blue"
-            text={
-              <p>
-                I have fantasies of <br />
-                someone coming in <br />
-                and having their <br />
-                way with me.
-              </p>
-            }
-          />
-          <Text
-            top={540}
-            left={58}
-            color="blue"
-            text={
-              <p>
-                I know. <br /> It's sick.
-              </p>
-            }
-          />
-          <Text
-            top={580}
-            left={31}
-            color="orange"
-            text={
-              <p>
-                The little man <br /> in the canoe <br /> was surprisingly{" "}
-                <br />
-                ecstatic.
-              </p>
-            }
-          />
-          <Text
-            top={636}
-            left={48}
-            color="orange"
-            text={
-              <p>
-                I'm sure he <br />
-                wouldn't have been <br />
-                if it wasn't an <br />
-                accident.
-              </p>
-            }
-          />
-          <Text
-            top={765}
-            left={62}
-            color="red"
-            text={
-              <p>
-                I remember
-                <br />
-                they showed us <br />
-                an animated <br />
-                video with a <br />
-                banana and
-                <br />a flower...
-              </p>
-            }
-          />
-          <Text
-            top={815}
-            left={62}
-            color="red"
-            text={
-              <p>
-                for male and
-                <br />
-                female genitals <br />
-                respectively, <br />
-              </p>
-            }
-          />
-          <Text
-            top={850}
-            left={62}
-            color="red"
-            text={
-              <p>
-                to show us how
-                <br />
-                married people <br />
-                have sex. <br />
-              </p>
-            }
-          />
-          <Text
-            top={918}
-            left={35}
-            color="lime"
-            text={<p>I used to hang around at the laundrette...</p>}
-          />
-          <Text
-            top={960}
-            left={60}
-            color="lime"
-            text={
-              <p>
-                because my friends told me <br /> it was a good place to meet{" "}
-                <br /> responsible single men.
-              </p>
-            }
-          />
-          <Text
-            top={1030}
-            left={35}
-            color="red"
-            text={
-              <p>
-                When I was a <br /> teenager, I was told <br /> only sluts shake
-                <br /> their bottoms for <br />
-                men when they
-                <br /> walk.
-              </p>
-            }
-          />
-          <Text
-            top={1065}
-            left={35}
-            color="red"
-            text={
-              <p>
-                So I carved "slut" on <br /> my nethers and slit <br /> my
-                wrists.
-              </p>
-            }
-          />
-          <Text
-            top={1135}
-            left={35}
-            color="red"
-            text={
-              <p>
-                I feel powerful <br /> knowing that the <br /> only person who{" "}
-                <br /> can hurt me now <br /> is me.
-              </p>
-            }
-          />
-          <Text
-            top={1255}
-            left={40}
-            color="white"
-            text={
-              <p>
-                Nothing seemed to work, <br /> I really had become <br />{" "}
-                useless and invisible.
-              </p>
-            }
-          />
-          <Text
-            top={1328}
-            left={63.1}
-            color="white"
-            text={
-              <p>
-                After holding on for so long, <br /> letting fo really sets you
-                free.
-              </p>
-            }
-          />
-          <Text
-            top={1395}
-            left={38}
-            color="orange"
-            text={
-              <p>
-                It doesn't have the same <br /> feeling of vulnerability...
-              </p>
-            }
-          />
-          <Text
-            top={1426}
-            left={59}
-            color="orange"
-            text={
-              <p>
-                that comes with
-                <br /> being penetrated.
-              </p>
-            }
-          />
-          <Text
-            top={1533}
-            left={36}
-            color="white"
-            text={<p>It's completely natural, if not normal.</p>}
-          />
-          <Text
-            top={1602}
-            left={35}
-            color="white"
-            text={<p>Why would the police stop me?</p>}
-          />
-          <Text
-            top={1637}
-            left={27}
-            color="white"
-            text={<p>Men roam around without their shirts all the time</p>}
-          />
-          <Text
-            top={1657}
-            left={35}
-            color="white"
-            text={<p>and my breasts are magnificent.</p>}
-          />
-          <Text
-            top={1715}
-            left={20}
-            color="white"
-            text={<p>These magazines.</p>}
-          />
-          <Text
-            top={1730}
-            left={20}
-            color="white"
-            text={
-              <p>
-                They're always telling you it's all <br />
-                about the exterior.
-              </p>
-            }
-          />
-          <Text
-            top={1783}
-            left={37}
-            color="white"
-            text={<p>Of course I don't wear sexy underwear.</p>}
-          /> */
-}

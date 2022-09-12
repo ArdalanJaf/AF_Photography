@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import StyledSlideshow from "./Slideshow.style";
+import StyledSlideshow from "../styles/Slideshow.style";
 
 //slide show
 function Slideshow({ content }) {

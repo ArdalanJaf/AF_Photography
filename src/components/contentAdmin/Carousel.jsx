@@ -1,5 +1,5 @@
 import React from "react";
-import StyledCarousel from "./Carousel.style";
+import StyledCarousel from "../styles/Carousel.style";
 
 //slide show
 function Carousel({ content }) {

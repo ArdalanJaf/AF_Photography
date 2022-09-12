@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import StyledActiveContentForm from "./ActiveContentForm.style";
+import StyledActiveContentForm from "../styles/ActiveContentForm.style";
 import DeleteButton from "./DeleteButton";
 import {
   setTitle,

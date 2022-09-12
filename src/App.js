@@ -1,16 +1,10 @@
-// import logo from './logo.svg';
-// import "./App.css";
-// import React, { useEffect } from "react";
 import React from "react";
+import Intro from "./components/Intro";
 import ContentAdmin from "./components/contentAdmin/ContentAdmin";
 import KillingKittens from "./components/kk/KillingKittens";
 import { useDispatch, useSelector } from "react-redux";
 // import { setScrollPosition } from "./redux/scrollPositionSlice";
-import Slideshow from "./components/contentAdmin/Slideshow";
-import Carousel from "./components/contentAdmin/Carousel";
-import Home from "./components/Home";
-import getContent from "./API/getContent";
-
+import { getUniqueId } from "./utils";
 function App() {
   // const dispatch = useDispatch();
 
@@ -24,35 +18,38 @@ function App() {
   // }, []);
   const library = useSelector((state) => state.content.library);
 
+  let testEntry = {
+    id: getUniqueId(),
+    title: "Andy's first entry",
+    imageLinks: ["AFE1", "AFE2", "AFE3"],
+    format: 1, // 0 = slideshow 1 = carousel
+    sortOrder: 0,
+    hide: 0,
+    entryTimestamp: Date.now(),
+    updateTimestamp: 0,
+  };
+
   return (
-    <div
-      style={{
-        height: "100vh",
-        width: "100vw",
-        margin: "0",
-        padding: "2%",
-        backgroundColor: "#fff",
-        // position: "relative",
-      }}
-      className="App"
-    >
-      <button onClick={() => getContent()}>API</button>
-      <ContentAdmin />
-      {/* {library.map((content, index) => {
-        if (!content.hide) {
-          return content.slideShow ? (
-            <Slideshow key={index} content={content} />
-          ) : (
-            <Carousel key={index} content={content} />
-          );
-        }
-      })} */}
+    <div className="App">
+      <Intro bgColor={"#ee9b00"} />
+      {/* <button onClick={() => getContent(testEntry)}>API</button> */}
+      {/* <ContentAdmin /> */}
 
       {/* <KillingKittens /> */}
-
-      {/* <Home /> */}
     </div>
   );
 }
 
 export default App;
+
+/* 
+#001219
+#005F73
+#0A9396
+#94D2BD
+#EE9B00
+#CA6702
+#BB3E03
+#AE2012
+#9B2226 
+*/
